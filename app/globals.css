@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #f5f5f0;
+  --font-serif: "DM Serif Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+}
+
+/* Mobile: use brighter white page background (prevents dark overscroll) */
+@media (max-width: 767px) {
+  body {
+    background: #ffffff;
+  }
+}
+
+@keyframes tick {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes star-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-star-spin {
+  transform-origin: center;
+  animation: star-spin 2.5s linear infinite;
+}
+
+.animate-star-spin-slow {
+  animation: star-spin 20s linear infinite;
+}
+
+@keyframes radial-line-pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.3; }
+}
+
+.ray {
+  position: absolute;
+  height: 1.5px;
+  transform-origin: center;
+  border-radius: 2px;
+  overflow: hidden;
+  background: none;
+}
+
+.ray-p1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 18%;
+  background: linear-gradient(90deg, transparent, rgba(180, 180, 180, 0.8), transparent);
+  animation: chase-out 2.4s ease-in-out infinite;
+}
+
+.ray-p2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 14%;
+  background: linear-gradient(90deg, transparent, rgba(200, 200, 200, 0.7), transparent);
+  animation: chase-out 2.4s ease-in-out 0.5s infinite;
+}
+
+@keyframes chase-out {
+  0%   { left: -20%; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 0.5; }
+  100% { left: 120%; opacity: 0; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.5; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes drawer-up {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.animate-drawer-up {
+  animation: drawer-up 0.3s ease forwards;
+}
+
+@keyframes overlay-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-overlay-fade-in {
+  animation: overlay-fade-in 0.2s ease forwards;
+}
+
+@keyframes warning-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.1); }
+}
+
+.animate-warning-blink {
+  animation: warning-blink 1.4s ease-in-out infinite;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
