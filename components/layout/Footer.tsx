@@ -9,7 +9,7 @@ const CATEGORIES = [
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-[#d2d2d7]/50 bg-[#F5F5F7]">
+    <footer className="mt-auto border-t border-[#d2d2d7]/50 bg-white">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#6e6e73]">
           {CATEGORIES.map((c) => (

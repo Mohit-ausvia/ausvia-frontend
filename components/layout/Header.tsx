@@ -29,7 +29,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setMobileOpen((o) => !o)}
-          className="p-2 text-[#1A1A18] hover:opacity-70 transition-opacity"
+          className="relative z-[60] p-2 text-[#1A1A18] hover:opacity-70 transition-opacity"
           aria-label="Menu"
         >
           <svg
@@ -88,7 +88,7 @@ export default function Header() {
       {/* Mobile nav overlay */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
+          className="fixed left-0 right-0 top-[52px] bottom-0 z-40 bg-black/40 md:hidden"
           onClick={() => setMobileOpen(false)}
           aria-hidden
         />

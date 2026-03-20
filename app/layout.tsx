@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* \"black-translucent\" gives a black bar that overlays page content on iOS */}
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className="min-h-screen bg-[#0A0A0A] text-[#F5F5F0] flex flex-col font-sans">
+      <body className="min-h-screen bg-[#F5F5F7] text-[#0A0A0A] flex flex-col font-sans">
         {/* Top black strip + header — sticky together */}
         <div className="sticky top-0 z-50">
           <div className="w-full bg-black text-[11px] text-[#F5F5F0]">

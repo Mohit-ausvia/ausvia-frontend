@@ -28,8 +28,7 @@ export const VERTICAL_CONFIG: Record<VerticalKey, VerticalConfig> = {
     georgiaIntro: "For personalised skincare guidance.",
     georgiaHeading: "AI Skincare Specialist",
     georgiaSub: "Built on dermatology science.",
-    georgiaDescription:
-      "Georgia screens products for safety, skin\u00A0type\u00A0compatibility, and ingredient\u00A0science.",
+    georgiaDescription: "Georgia screens every product for safety, skin type and ingredients",
     subcategories: [
       "All",
       "Cleansers",

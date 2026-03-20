@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { VerticalConfig } from "@/config/verticals";
 import type { MockProduct } from "@/lib/mock-category-data";
@@ -15,16 +16,29 @@ type CategoryPageClientProps = {
   verticalKey: string;
   config: VerticalConfig;
   products: MockProduct[];
+  initialSub?: string;
 };
 
 export default function CategoryPageClient({
   verticalKey,
   config,
   products,
+  initialSub,
 }: CategoryPageClientProps) {
-  const [activeSub, setActiveSub] = useState("All");
+  const searchParams = useSearchParams();
+  const [activeSub, setActiveSub] = useState(() => {
+    const desired = (initialSub ?? "All").trim();
+    return config.subcategories.includes(desired) ? desired : "All";
+  });
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [showCompactBar, setShowCompactBar] = useState(false);
+
+  useEffect(() => {
+    const desired = (searchParams.get("sub") ?? initialSub ?? "All").trim();
+    const next = config.subcategories.includes(desired) ? desired : "All";
+    setActiveSub(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, config.subcategories.join("|")]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -44,10 +58,10 @@ export default function CategoryPageClient({
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Breadcrumb + Hero — white background */}
+      {/* Breadcrumb + Hero */}
       <div className="bg-white">
         {/* Breadcrumb — same as product page: blended dividers, ol/li, grey links, black current */}
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10 pt-2 md:pt-2 pb-3">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-10 pt-2 md:pt-2 pb-1">
           <nav className="my-2 py-0 mb-0" aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-x-2 font-sans text-sm md:text-base text-[#6b6b6b]">
               <li>
@@ -73,11 +87,11 @@ export default function CategoryPageClient({
 
         {/* Georgia Hero Block */}
         <GeorgiaHeroBlock
-        georgiaIntro={config.georgiaIntro}
-        georgiaHeading={config.georgiaHeading}
-        georgiaSub={config.georgiaSub}
-        georgiaDescription={config.georgiaDescription}
-        onAskGeorgia={() => setDrawerOpen(true)}
+          georgiaIntro={config.georgiaIntro}
+          georgiaHeading={config.georgiaHeading}
+          georgiaSub={config.georgiaSub}
+          georgiaDescription={config.georgiaDescription}
+          onAskGeorgia={() => setDrawerOpen(true)}
         />
 
       </div>

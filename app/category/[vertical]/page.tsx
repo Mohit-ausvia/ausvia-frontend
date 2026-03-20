@@ -4,7 +4,7 @@ import { VERTICAL_CONFIG, type VerticalKey } from "@/config/verticals";
 import { getMockProductsByVertical } from "@/lib/mock-category-data";
 import CategoryPageClient from "./CategoryPageClient";
 
-type Props = { params: Promise<{ vertical: string }> };
+type Props = { params: Promise<{ vertical: string }>; searchParams?: Promise<Record<string, string | string[] | undefined>> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { vertical } = await params;
@@ -16,10 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CategoryPage({ params }: Props) {
+export default async function CategoryPage({ params, searchParams }: Props) {
   const { vertical } = await params;
   const config = VERTICAL_CONFIG[vertical as VerticalKey];
   if (!config) notFound();
+
+  const sp = (await searchParams) ?? {};
+  const subParam = sp.sub;
+  const initialSub = Array.isArray(subParam) ? subParam[0] : subParam;
 
   const products = getMockProductsByVertical(vertical);
   return (
@@ -27,6 +31,7 @@ export default async function CategoryPage({ params }: Props) {
       verticalKey={vertical as VerticalKey}
       config={config}
       products={products}
+      initialSub={initialSub}
     />
   );
 }

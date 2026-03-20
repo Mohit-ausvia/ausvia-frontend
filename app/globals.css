@@ -15,21 +15,29 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Mobile: use brighter white page background (prevents dark overscroll) */
+/* Mobile: keep brighter page background */
 @media (max-width: 767px) {
   body {
-    background: #ffffff;
+    background: #F5F5F7;
   }
 }
 
 @keyframes tick {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes star-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-star-spin {
@@ -42,8 +50,30 @@ body {
 }
 
 @keyframes radial-line-pulse {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes chase-out {
+  0% {
+    transform: translateX(-60%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateX(160%);
+    opacity: 0;
+  }
 }
 
 .ray {
@@ -75,50 +105,46 @@ body {
   animation: chase-out 2.4s ease-in-out 0.5s infinite;
 }
 
-@keyframes chase-out {
-  0%   { left: -20%; opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 0.5; }
-  100% { left: 120%; opacity: 0; }
+/* Mobile: calmer rays */
+@media (max-width: 767px) {
+  .ray-p1 {
+    width: 16%;
+    background: linear-gradient(90deg, transparent, rgba(170, 170, 170, 0.55), transparent);
+    animation-duration: 3.6s;
+  }
+
+  .ray-p2 {
+    width: 12%;
+    background: linear-gradient(90deg, transparent, rgba(190, 190, 190, 0.45), transparent);
+    animation-duration: 3.6s;
+    animation-delay: 0.3s;
+  }
 }
 
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.6); opacity: 0.5; }
-}
-.animate-pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes drawer-up {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-.animate-drawer-up {
-  animation: drawer-up 0.3s ease forwards;
-}
-
-@keyframes overlay-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.animate-overlay-fade-in {
-  animation: overlay-fade-in 0.2s ease forwards;
-}
-
-@keyframes warning-blink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(1.1); }
-}
-
-.animate-warning-blink {
-  animation: warning-blink 1.4s ease-in-out infinite;
-}
-
+/* Used across carousels to hide scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes hero-star-slide {
+  0% {
+    transform: translateX(-14px);
+  }
+  50% {
+    transform: translateX(14px);
+  }
+  100% {
+    transform: translateX(-14px);
+  }
+}
+
+.animate-hero-star-slide {
+  animation: hero-star-slide 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+

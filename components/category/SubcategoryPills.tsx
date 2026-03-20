@@ -68,10 +68,10 @@ export default function SubcategoryPills({ subcategories, active, onSelect }: Su
   return (
     <div
       ref={scrollRef}
-      className="mt-4 md:mt-6 py-1 px-4 mb-0 overflow-x-auto scrollbar-hide bg-white touch-pan-x"
+      className="mt-2 md:mt-4 py-1 px-4 mb-0 overflow-x-auto scrollbar-hide bg-white touch-pan-x"
       style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}
     >
-      <div className="flex gap-6 md:gap-8 w-max min-w-full md:min-w-0">
+      <div className="flex gap-4 md:gap-8 w-max min-w-full md:min-w-0">
         {subcategories.map((sub) => {
           const isActive = sub === active;
           return (
@@ -79,7 +79,7 @@ export default function SubcategoryPills({ subcategories, active, onSelect }: Su
               key={sub}
               type="button"
               onClick={() => onSelect(sub)}
-              className={`shrink-0 py-2 font-sans text-[13px] md:text-[14px] transition-colors duration-150 border-b-2 -mb-px ${
+              className={`shrink-0 py-2 font-sans text-[15px] md:text-[14px] transition-colors duration-150 border-b-2 -mb-px text-center min-w-[calc((100vw-4rem-2rem)/3)] md:min-w-0 ${
                 isActive
                   ? "font-semibold text-[#1A1A18] border-[#1A1A18]"
                   : "font-normal text-[#4A4A46] border-transparent hover:text-[#1A1A18]"
